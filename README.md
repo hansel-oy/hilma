@@ -1,5 +1,8 @@
 # hilma
 
+[![Build Status](https://travis-ci.org/hansel-oy/hilma.svg?branch=master)](https://travis-ci.org/hansel-oy/hilma)
+[![codecov](https://codecov.io/gh/hansel-oy/hilma/branch/master/graphs/badge.svg)](https://codecov.io/gh/hansel-oy/hilma)
+
 An R package for accessing the [Hilma](https://www.hankintailmoitukset.fi) [API](https://hns-hilma-prod-apim.portal.azure-api.net).
 
 ## Installation
