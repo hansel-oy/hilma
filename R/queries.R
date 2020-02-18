@@ -123,6 +123,13 @@ id_filter <- function(id) {
 }
 
 #' @rdname query-helpers
+#' @param id The id of the procurement project. E.g. `1L`.
+#' @export
+procurement_project_filter <- function(id) {
+  generic_pred_filter("procurementProjectId", "eq", id)
+}
+
+#' @rdname query-helpers
 #' @param since A [date]-object. Includes the boundary and defaults to yesterday.
 #' @export
 all_notices_modified_since_filter <- function(since = today() %m-% days(1)) {
@@ -186,3 +193,10 @@ organisation_id_search <- function(organisation_id) {
   generic_search("organisationNationalRegistrationNumber", organisation_id)
 }
 
+
+#' @rdname query-helpers
+#' @param cpv The cpv code to search E.g. `"00000000"`.
+#' @export
+cpv_search <- function(cpv) {
+  generic_search("cpvCodes", cpv)
+}

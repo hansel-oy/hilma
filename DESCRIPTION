@@ -1,7 +1,7 @@
 Package: hilma
 Type: Package
 Title: An R package for accessing the Hilma API
-Version: 0.1.0
+Version: 0.1.1
 Author: Markus Paasiniemi [aut]
 Maintainer: Markus Paasiniemi <markus.paasiniemi@hansel.fi>
 Description: The package allows users to fetch notices on public procurement in Finland
