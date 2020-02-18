@@ -9,7 +9,8 @@
 process_notice_tibble <- function(tbl_raw) {
   ints <- "id"
   timestamps <- c("datePublished", "dateModified",
-                  "tendersOrRequestsToParticipateDueDateTime")
+                  "tendersOrRequestsToParticipateDueDateTime",
+                  "expirationDate")
   timestamps_in_data <- intersect(timestamps, colnames(tbl_raw))
   timestamp_fi <- function(ts) {
     ymd_hms(str_c(ts, "+02"), tz = "Europe/Helsinki", quiet = TRUE)
