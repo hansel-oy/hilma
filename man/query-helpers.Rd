@@ -9,12 +9,14 @@
 \alias{is_national_filter}
 \alias{notice_number_filter}
 \alias{id_filter}
+\alias{procurement_project_filter}
 \alias{all_notices_modified_since_filter}
 \alias{all_notices_modified_until_filter}
 \alias{all_notices_published_since_filter}
 \alias{all_notices_published_until_filter}
 \alias{organisation_name_search}
 \alias{organisation_id_search}
+\alias{cpv_search}
 \title{Helper functions for constructing the queries}
 \usage{
 query_and(q1, q2)
@@ -31,6 +33,8 @@ notice_number_filter(notice_number)
 
 id_filter(id)
 
+procurement_project_filter(id)
+
 all_notices_modified_since_filter(since = today() \%m-\% days(1))
 
 all_notices_modified_until_filter(until = today())
@@ -42,6 +46,8 @@ all_notices_published_until_filter(until = today())
 organisation_name_search(name)
 
 organisation_id_search(organisation_id)
+
+cpv_search(cpv)
 }
 \arguments{
 \item{q1}{First query}
@@ -59,7 +65,7 @@ are not for FAs.}
 
 \item{notice_number}{The notice number. E.g. \code{"2020-000001"}.}
 
-\item{id}{The (internal) id of the notice. E.g. \code{1L}.}
+\item{id}{The id of the procurement project. E.g. \code{1L}.}
 
 \item{since}{A \link{date}-object. Includes the boundary and defaults to yesterday.}
 
@@ -69,6 +75,8 @@ are not for FAs.}
 
 \item{organisation_id}{The national registration id of the procuring organisation.
 E.g. \code{"1234567-8"}.}
+
+\item{cpv}{The cpv code to search E.g. \code{"00000000"}.}
 }
 \value{
 A list containing the query that can be passed to \code{\link[=fetch_notices]{fetch_notices()}}.

@@ -4,7 +4,15 @@
 \alias{fetch_hilma_data}
 \title{Fetch the data from the API}
 \usage{
-fetch_hilma_data(skip, query, headers, verbose, api_url, n_fetch = 1000L)
+fetch_hilma_data(
+  skip,
+  query,
+  headers,
+  verbose,
+  api_url,
+  n_fetch = 1000L,
+  delay
+)
 }
 \arguments{
 \item{skip}{How many notices should be skipped from the beginning. The notices
@@ -20,6 +28,8 @@ are arranged by \code{id} before the skipping.}
 
 \item{n_fetch}{The (maximum) number of notices to fetch. Defaults to \code{1000L}
 which is the limit of the API.}
+
+\item{delay}{Delay in seconds after the query.}
 }
 \value{
 The \code{value}-field of the result in a tibble.

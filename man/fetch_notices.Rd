@@ -4,7 +4,13 @@
 \alias{fetch_notices}
 \title{Fetch notices from the Hilma API}
 \usage{
-fetch_notices(query, api_key, include_search_score = FALSE, verbose = FALSE)
+fetch_notices(
+  query,
+  api_key,
+  include_search_score = FALSE,
+  verbose = FALSE,
+  delay = 1
+)
 }
 \arguments{
 \item{query}{The query parameters as a list that will be encoded as
@@ -18,6 +24,9 @@ JSON with \code{\link[httr:POST]{httr::POST()}} using \code{encode = "json"}. Ca
 the result matches the query) or not. Defaults to \code{FALSE}.}
 
 \item{verbose}{Whether to print the progress or not. Defaults to \code{FALSE}.}
+
+\item{delay}{Delay between the fetches in seconds if the query needs to be
+split into multiple fetches. Defaults to \code{1}.}
 }
 \value{
 A tibble that contains the result of the query.

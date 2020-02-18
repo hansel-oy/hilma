@@ -10,18 +10,21 @@
 #' @param api_url Url to the hilma_api.
 #' @param n_fetch The (maximum) number of notices to fetch. Defaults to `1000L`
 #' which is the limit of the API.
+#' @param delay Delay in seconds after the query.
 #'
 #' @return The `value`-field of the result in a tibble.
 fetch_hilma_data <- function(skip, query, headers, verbose,
-                             api_url, n_fetch = 1000L) {
+                             api_url, n_fetch = 1000L, delay) {
   body <- c(query, list(orderby = "id", top = n_fetch, skip = skip))
 
   if (verbose) print(glue("Iteration {iter}/{iters}."))
-  POST(api_url, body = body, encode = "json", config = headers) %>%
+  res <- POST(api_url, body = body, encode = "json", config = headers) %>%
     handle_errors() %>% # check if there are errors
     content(as = "parsed", simplifyDataFrame = TRUE) %>%
     pluck("value") %>%
     as_tibble()
+  Sys.sleep(delay)
+  res
 }
 
 
@@ -59,13 +62,16 @@ fetch_number_of_results <- function(query, headers, api_url) {
 #' @param include_search_score Whether to return the search score (ie. how well
 #' the result matches the query) or not. Defaults to `FALSE`.
 #' @param verbose Whether to print the progress or not. Defaults to `FALSE`.
+#' @param delay Delay between the fetches in seconds if the query needs to be
+#' split into multiple fetches. Defaults to `1`.
 #'
 #' @return A tibble that contains the result of the query.
 #' @export
 fetch_notices <- function(query,
                           api_key,
                           include_search_score = FALSE,
-                          verbose = FALSE) {
+                          verbose = FALSE,
+                          delay = 1) {
 
   api_url <- "https://api.hankintailmoitukset.fi/avp/notices/docs/search"
   headers <- construct_headers(api_key)
@@ -81,7 +87,7 @@ fetch_notices <- function(query,
 
   results <- skips %>%
     map_df(fetch_hilma_data, query = query, headers = headers,
-           verbose = verbose, api_url = api_url, n_fetch = batch_size)
+           verbose = verbose, api_url = api_url, n_fetch = batch_size, delay = delay)
 
   # if there are not results that match the query, the api doesnt return anything
   # -> set the result to be a tibble with correct columns but 0 rows
