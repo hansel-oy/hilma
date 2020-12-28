@@ -91,11 +91,9 @@ use the respective functionalities of the
 \code{query_and} and \verb{_or} can be used to combine queries (see example below).
 }
 \examples{
-\donttest{
 # A query that returns all notices modified 2020-01-01 or later
 # from a certain organisation
-q <- organisation_id_filter("1234567-8") \%>\%
-query_and(all_notices_modified_since_filter(lubridate::ymd("2020-01-01")))
-fetch_notices(q, api_key)
-}
+# q <- organisation_id_filter("1234567-8") \%>\%
+#        query_and(all_notices_modified_since_filter(lubridate::ymd("2020-01-01")))
+# fetch_notices(q, api_key)
 }
