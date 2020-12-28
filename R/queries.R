@@ -10,13 +10,11 @@
 #' @return A list containing the query that can be passed to [fetch_notices()].
 #'
 #' @examples
-#' \donttest{
 #' # A query that returns all notices modified 2020-01-01 or later
 #' # from a certain organisation
-#' q <- organisation_id_filter("1234567-8") %>%
-#' query_and(all_notices_modified_since_filter(lubridate::ymd("2020-01-01")))
-#' fetch_notices(q, api_key)
-#' }
+#' # q <- organisation_id_filter("1234567-8") %>%
+#' #        query_and(all_notices_modified_since_filter(lubridate::ymd("2020-01-01")))
+#' # fetch_notices(q, api_key)
 #' @name query-helpers
 NULL
 
